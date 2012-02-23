@@ -16,12 +16,12 @@ class Downloads:
 
     def createNewDownload(self, repo, name, size, description=None, content_type=None, user=None):
         username = self.__api.username if user is None else user
-        data = json.dumps( dict(
-            name = "%s" % name,
-            size = size,
-            description = "%s" % description,
-            content_type = content_type
-        ) )
+        data = json.dumps( {
+            'name': "%s" % name,
+            'size': size,
+            'description': "%s" % description,
+            'content_type': content_type
+        } )
 
         newResource = json.loads( HTTP( self.__api ).post( 'repos/%s/%s/downloads/%s' % (username, repo, id), data ) )
         # use pycurl / curl here to create the download... issues on windows ugh

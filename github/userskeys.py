@@ -12,11 +12,15 @@ class Keys:
         return HTTP( self.__api ).get( 'user/keys/%s' % id )
 
     def createPublicKey(self, title, key):
-        data = json.dumps( {'title': title, 'key': key} )
+        data = json.dumps( {
+            'title': title, 'key': key
+        } )
         return HTTP( self.__api ).post( 'user/keys', data )
 
     def updatePublicKey(self, id, title, key):
-        data = json.dumps( {'title': title, 'key': key} )
+        data = json.dumps( {
+            'title': title, 'key': key
+        } )
         return HTTP( self.__api ).patch( 'user/keys/%s' % id, data )
 
     def deletePublicKey(self, id):

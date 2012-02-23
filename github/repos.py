@@ -29,28 +29,28 @@ class Repos( ):
 
     def createUserRepo(self, name=None, description=None, homepage=None, private=False, has_issues=True, has_wiki=True,
                        has_downloads=True):
-        data = json.dumps( dict(
-            name = "%s" % name,
-            description = "%s" % description,
-            homepage = "%s" % homepage,
-            private = private,
-            has_issues = has_issues,
-            has_wiki = has_wiki,
-            has_downloads = has_downloads
-        ) )
+        data = json.dumps( {
+            'name': "%s" % name,
+            'description': "%s" % description,
+            'homepage': "%s" % homepage,
+            'private': private,
+            'has_issues': has_issues,
+            'has_wiki': has_wiki,
+            'has_downloads': has_downloads
+        } )
         return HTTP( self.__api ).post( 'user/repos', data )
 
     def createOrgRepo(self, org, name=None, description=None, homepage=None, private=False, has_issues=True,
                       has_wiki=True, has_downloads=True):
-        data = json.dumps( dict(
-            name = "%s" % name,
-            description = "%s" % description,
-            homepage = "%s" % homepage,
-            private = private,
-            has_issues = has_issues,
-            has_wiki = has_wiki,
-            has_downloads = has_downloads
-        ) )
+        data = json.dumps( {
+            'name': "%s" % name,
+            'description': "%s" % description,
+            'homepage': "%s" % homepage,
+            'private': private,
+            'has_issues': has_issues,
+            'has_wiki': has_wiki,
+            'has_downloads': has_downloads
+        } )
         return HTTP( self.__api ).post( 'orgs/%s/repos' % org, data )
 
     def getRepo(self, repo, user=None):
@@ -62,7 +62,9 @@ class Repos( ):
         username = self.__api.username if user is None else user
 
         old = json.loads( HTTP( self.__api ).get( 'repos/%s/%s' % (username, repo) ) )
-        new = {'name': name if name != old['name'] and name is not None else old['name']}
+        new = {
+            'name': name if name != old['name'] and name is not None else old['name']
+        }
         if description and description != old['description']:
             new['description'] = description
         if homepage and homepage != old['homepage']:

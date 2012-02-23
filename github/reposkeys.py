@@ -15,10 +15,10 @@ class Keys:
 
     def createKey(self, repo, title, key, user=None):
         username = self.__api.username if user is None else user
-        data = json.dumps( dict(
-            title = "%s" % title,
-            key = "%s" % key
-        ) )
+        data = json.dumps( {
+            'title': "%s" % title,
+            'key': "%s" % key
+        } )
         return HTTP( self.__api ).post( 'repos/%s/%s/keys' % (username, repo), data )
 
     def editKey(self, repo, id, title=None, key=None, user=None):

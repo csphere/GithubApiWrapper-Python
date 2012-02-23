@@ -31,13 +31,13 @@ class Commits:
 
     def createComment(self, repo, sha, body, line, path, position, user=None):
         username = self.__api.username if user is None else user
-        data = json.dumps( dict(
-            body = body,
-            commit_id = sha,
-            line = line,
-            path = path,
-            position = position
-        ) )
+        data = json.dumps( {
+            'body': body,
+            'commit_id': sha,
+            'line': line,
+            'path': path,
+            'position': position
+        } )
         return HTTP( self.__api ).post( 'repos/%s/%s/commits/%s/comments' % (username, repo, sha), data )
 
     def getSingleComment(self, repo, id, user=None):
