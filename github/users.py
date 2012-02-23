@@ -16,7 +16,7 @@ class Users:
         return HTTP( self.__api ).get( url )
 
     def updateUser(self, name='', email='', blog='', company='', location='', hireable=False, bio='', user=None):
-        old = self.getUser( user )
+        old = self.getUser( user )['data']
         new = {}
         if name and name != old['name']:
             new['name'] = name

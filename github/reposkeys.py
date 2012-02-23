@@ -24,7 +24,7 @@ class Keys:
     def editKey(self, repo, id, title=None, key=None, user=None):
         username = self.__api.username if user is None else user
 
-        old = json.loads( self.getKey( repo, user ) )
+        old = json.loads( self.getKey( repo, user ) )['data']
         new = {}
         if title and title != old['title']:
             new['title'] = title

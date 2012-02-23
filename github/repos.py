@@ -61,7 +61,7 @@ class Repos( ):
                  has_issues=True, has_wiki=True, has_downloads=True):
         username = self.__api.username if user is None else user
 
-        old = json.loads( HTTP( self.__api ).get( 'repos/%s/%s' % (username, repo) ) )
+        old = self.getRepo( repo, user )['data']
         new = {
             'name': name if name != old['name'] and name is not None else old['name']
         }

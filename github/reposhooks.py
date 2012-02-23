@@ -28,7 +28,7 @@ class Hooks:
                  user=None):
         username = self.__api.username if user is None else user
 
-        old = json.loads( self.getHook( repo, user ) )
+        old = json.loads( self.getHook( repo, user ) )['data']
         new = {
             'name': name if name != old['name'] and name is not None else old['name'],
             'config': config if config != old['config'] and config is not None else old['config']
