@@ -18,4 +18,4 @@ class Forks:
             url = '%s?%s' % ('repos/%s/%s/forks' % (username, repo), org)
         else:
             url = 'repos/%s/%s/forks' % (username, repo)
-        return HTTP( self.__api ).get( url )
+        return HTTP( self.__api ).post( url )

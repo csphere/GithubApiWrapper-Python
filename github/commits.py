@@ -31,7 +31,7 @@ class Commits:
 
     def createComment(self, repo, sha, body, line, path, position, user=None):
         username = self.__api.username if user == None else user
-        data = json.dump( dict(
+        data = json.dumps( dict(
             body = body,
             commit_id = sha,
             line = line,
@@ -46,7 +46,7 @@ class Commits:
 
     def updateComment(self, repo, id, body, user=None):
         username = self.__api.username if user == None else user
-        data = json.dump( dict(
+        data = json.dumps( dict(
             body = body,
         ) )
         return HTTP( self.__api ).post( 'repos/%s/%s/comments/%s' % (username, repo, id), data )

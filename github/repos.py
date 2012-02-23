@@ -4,6 +4,9 @@ from collaborators import Collaborators
 from commits import Commits
 from downloads import Downloads
 from forks import Forks
+from keys import Keys
+from watching import Watching
+from hooks import Hooks
 
 class Repos( ):
     def __init__(self, api):
@@ -12,20 +15,20 @@ class Repos( ):
         self.commits = Commits( self.__api )
         self.downloads = Downloads( self.__api )
         self.forks = Forks( self.__api )
-
-    def listYourRepos(self):
-        return HTTP( self.__api ).get( 'user/repos' )
+        self.keys = Keys( self.__api )
+        self.watching = Watching( self.__api )
+        self.hooks = Hooks( self.__api )
 
     def listUserRepos(self, user=None):
         username = self.__api.username if user == None else user
         return HTTP( self.__api ).get( 'user/%s/repos' % username )
 
-    def listOrgRepos(self, orgname):
-        return HTTP( self.__api ).get( 'orgs/%s/repos' % orgname )
+    def listOrgRepos(self, org):
+        return HTTP( self.__api ).get( 'orgs/%s/repos' % org )
 
     def createUserRepo(self, name=None, description=None, homepage=None, private=False, has_issues=True, has_wiki=True,
                        has_downloads=True):
-        data = json.dump( dict(
+        data = json.dumps( dict(
             name = "%s" % name,
             description = "%s" % description,
             homepage = "%s" % homepage,
@@ -36,9 +39,9 @@ class Repos( ):
         ) )
         return HTTP( self.__api ).post( 'user/repos', data )
 
-    def createOrgRepo(self, orgname, name=None, description=None, homepage=None, private=False, has_issues=True,
+    def createOrgRepo(self, org, name=None, description=None, homepage=None, private=False, has_issues=True,
                       has_wiki=True, has_downloads=True):
-        data = json.dump( dict(
+        data = json.dumps( dict(
             name = "%s" % name,
             description = "%s" % description,
             homepage = "%s" % homepage,
@@ -47,17 +50,17 @@ class Repos( ):
             has_wiki = has_wiki,
             has_downloads = has_downloads
         ) )
-        return HTTP( self.__api ).post( 'orgs/%s/repos' % (orgname, data) )
+        return HTTP( self.__api ).post( 'orgs/%s/repos' % (org, data) )
 
-    def get(self, reponame, user=None):
+    def getRepo(self, repo, user=None):
         username = self.__api.username if user == None else user
-        return HTTP( self.__api ).get( 'repos/%s/%s' % (username, reponame) )
+        return HTTP( self.__api ).get( 'repos/%s/%s' % (username, repo) )
 
-    def edit(self, reponame, user=None, name=None, description=None, homepage=None, private=False,
-             has_issues=True, has_wiki=True, has_downloads=True):
+    def editRepo(self, repo, user=None, name=None, description=None, homepage=None, private=False,
+                 has_issues=True, has_wiki=True, has_downloads=True):
         username = self.__api.username if user == None else user
-        old = json.loads( HTTP( self.__api ).get( 'repos/%s/%s' % (username, reponame) ) )
 
+        old = json.loads( HTTP( self.__api ).get( 'repos/%s/%s' % (username, repo) ) )
         new = {}
         new['name'] = name if name != old['name'] and name != None else old['name']
         if description and description != old['description']:
@@ -74,7 +77,7 @@ class Repos( ):
             new['has_downloads'] = has_downloads
 
         data = json.dumps( new )
-        return HTTP( self.__api ).patch( 'repos/%s/%s' % (username, reponame), data )
+        return HTTP( self.__api ).patch( 'repos/%s/%s' % (username, repo), data )
 
     def listContributors(self, repo, user=None):
         username = self.__api.username if user == None else user

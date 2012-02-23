@@ -15,7 +15,7 @@ class Downloads:
 
     def createNewDownload(self, repo, name, size, description=None, content_type=None, user=None):
         username = self.__api.username if user == None else user
-        data = json.dump( dict(
+        data = json.dumps( dict(
             name = "%s" % name,
             size = size,
             description = "%s" % description,
