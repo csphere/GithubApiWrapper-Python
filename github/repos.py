@@ -21,7 +21,8 @@ class Repos( ):
 
     def listUserRepos(self, user=None):
         username = self.__api.username if user == None else user
-        return HTTP( self.__api ).get( 'user/%s/repos' % username )
+        url = 'users/%s/repos' % username if user != self.__api.username else 'user/repos'
+        return HTTP( self.__api ).get( url )
 
     def listOrgRepos(self, org):
         return HTTP( self.__api ).get( 'orgs/%s/repos' % org )

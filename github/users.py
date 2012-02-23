@@ -1,9 +1,11 @@
 from http import HTTP
 import json
+from emails import Emails
 
 class Users:
     def __init__(self, api):
         self.__api = api
+        sekf.emails = Emails( self.__api )
 
     def getUser(self, user=None):
         url = 'users/%s' % user if (user != None and user != self.__api.username) else 'user'
