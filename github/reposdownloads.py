@@ -7,15 +7,15 @@ class Downloads:
         self.__api = api
 
     def getDownloads(self, repo, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/downloads' % (username, repo), )
 
     def getSingleDownload(self, repo, id, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/downloads/%s' % (username, repo, id), )
 
     def createNewDownload(self, repo, name, size, description=None, content_type=None, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         data = json.dumps( dict(
             name = "%s" % name,
             size = size,
@@ -29,5 +29,5 @@ class Downloads:
         #     http://pycurl.sourceforge.net/
 
     def deleteDownload(self, repo, id, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).delete( 'repos/%s/%s/downloads/%s' % (username, repo, id), )

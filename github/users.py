@@ -1,16 +1,18 @@
 from http import HTTP
 import json
-from emails import Emails
-from followers import Followers
+from usersemails import Emails
+from usersfollowers import Followers
+from userskeys import Keys
 
 class Users:
     def __init__(self, api):
         self.__api = api
         self.emails = Emails( self.__api )
         self.followers = Followers( self.__api )
+        self.keys = Keys( self.__api )
 
     def getUser(self, user=None):
-        url = 'users/%s' % user if (user != None and user != self.__api.username) else 'user'
+        url = 'users/%s' % user if (user is not None and user != self.__api.username) else 'user'
         return HTTP( self.__api ).get( url )
 
     def updateUser(self, name='', email='', blog='', company='', location='', hireable=False, bio='', user=None):

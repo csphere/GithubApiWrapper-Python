@@ -1,9 +1,10 @@
 from api import Api
 from http import HTTP
 
-class Github(HTTP):
-    def __init__(self, username, password):
+class Github( HTTP ):
+    def __init__(self, username, password ):
         self.api = Api( username, password )
+        HTTP.__init__( self, self.api )
 
     def execute(self, httpVerb, path, data=None):
         if httpVerb == 'HEAD':

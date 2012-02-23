@@ -5,15 +5,15 @@ class Followers:
         self.__api = api
 
     def listFollowers(self, user=None):
-        url = 'users/%s/followers' % user if (user != None and user != self.__api.username) else 'user/followers'
+        url = 'users/%s/followers' % user if (user is not None and user != self.__api.username) else 'user/followers'
         return HTTP( self.__api ).get( url )
 
     def listFollowing(self, user=None):
-        url = 'users/%s/following' % user if (user != None and user != self.__api.username) else 'user/following'
+        url = 'users/%s/following' % user if (user is not None and user != self.__api.username) else 'user/following'
         return HTTP( self.__api ).get( url )
 
     def listFollowing(self, user=None):
-        url = 'users/%s/following' % user if (user != None and user != self.__api.username) else 'user/following'
+        url = 'users/%s/following' % user if (user is not None and user != self.__api.username) else 'user/following'
         return HTTP( self.__api ).get( url )
 
     def checkIfFollowing(self, user):

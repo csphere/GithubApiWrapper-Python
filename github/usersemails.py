@@ -8,10 +8,10 @@ class Emails:
     def listEmails(self):
         return HTTP( self.__api ).get( 'user/emails' )
 
-    def addEmail(self, emails=[]):
+    def addEmail(self, emails):
         data = json.dumps( emails )
         return HTTP( self.__api ).post( 'user/emails', data )
 
-    def addEmail(self, emails=[]):
+    def deleteEmail(self, emails):
         data = json.dumps( emails )
         return HTTP( self.__api ).delete( 'user/emails', data )

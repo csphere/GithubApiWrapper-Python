@@ -1,12 +1,12 @@
 from http import HTTP
 import json
-from collaborators import Collaborators
-from commits import Commits
-from downloads import Downloads
-from forks import Forks
-from keys import Keys
-from watching import Watching
-from hooks import Hooks
+from reposcollaborators import Collaborators
+from reposcommits import Commits
+from reposdownloads import Downloads
+from reposforks import Forks
+from reposkeys import Keys
+from reposwatching import Watching
+from reposhooks import Hooks
 
 class Repos( ):
     def __init__(self, api):
@@ -20,7 +20,7 @@ class Repos( ):
         self.hooks = Hooks( self.__api )
 
     def listUserRepos(self, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         url = 'users/%s/repos' % username if user != self.__api.username else 'user/repos'
         return HTTP( self.__api ).get( url )
 
@@ -51,19 +51,18 @@ class Repos( ):
             has_wiki = has_wiki,
             has_downloads = has_downloads
         ) )
-        return HTTP( self.__api ).post( 'orgs/%s/repos' % (org, data) )
+        return HTTP( self.__api ).post( 'orgs/%s/repos' % org, data )
 
     def getRepo(self, repo, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s' % (username, repo) )
 
     def editRepo(self, repo, user=None, name=None, description=None, homepage=None, private=False,
                  has_issues=True, has_wiki=True, has_downloads=True):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
 
         old = json.loads( HTTP( self.__api ).get( 'repos/%s/%s' % (username, repo) ) )
-        new = {}
-        new['name'] = name if name != old['name'] and name != None else old['name']
+        new = {'name': name if name != old['name'] and name is not None else old['name']}
         if description and description != old['description']:
             new['description'] = description
         if homepage and homepage != old['homepage']:
@@ -81,21 +80,21 @@ class Repos( ):
         return HTTP( self.__api ).patch( 'repos/%s/%s' % (username, repo), data )
 
     def listContributors(self, repo, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/contributors' % (username, repo) )
 
     def listLangs(self, repo, user=None ):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/languages' % (username, repo) )
 
     def listTeams(self, repo, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/teams' % (username, repo) )
 
     def listTags(self, repo, user=None ):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/tags' % (username, repo) )
 
     def listBranches(self, repo, user=None ):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         return HTTP( self.__api ).get( 'repos/%s/%s/branches' % (username, repo) )

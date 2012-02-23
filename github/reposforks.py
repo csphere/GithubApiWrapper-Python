@@ -5,7 +5,7 @@ class Forks:
         self.__api = api
 
     def listForks(self, repo, sort=None, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         if sort:
             url = '%s?sort=%s' % ('repos/%s/%s/forks' % (username, repo), sort)
         else:
@@ -13,7 +13,7 @@ class Forks:
         return HTTP( self.__api ).get( url )
 
     def createFork(self, repo, org=None, user=None):
-        username = self.__api.username if user == None else user
+        username = self.__api.username if user is None else user
         if org:
             url = '%s?%s' % ('repos/%s/%s/forks' % (username, repo), org)
         else:

@@ -8,49 +8,40 @@ class HTTP( ):
     def head(self, path):
         url = self.__buildurl( path )
         r = requests.head( url, auth = (self.api.username, self.api.password) )
-        response = {}
-        response['headers'] = r.headers
-        response['data'] = json.loads( r.content )
+        response = {
+            'headers': r.headers,
+            'data': json.loads( r.content )
+        }
         return json.dumps( response )
 
     def get(self, path):
         url = self.__buildurl( path )
         r = requests.get( url, auth = (self.api.username, self.api.password) )
-        response = {}
-        response['headers'] = r.headers
-        response['data'] = json.loads( r.content )
+        response = {'headers': r.headers, 'data': json.loads( r.content )}
         return json.dumps( response )
 
-    def post(self, path, data):
+    def post(self, path, data=None):
         url = self.__buildurl( path )
         r = requests.post( url, data = data, auth = (self.api.username, self.api.password) )
-        response = {}
-        response['headers'] = r.headers
-        response['data'] = json.loads( r.content )
+        response = {'headers': r.headers, 'data': json.loads( r.content )}
         return json.dumps( response )
 
     def patch(self, path, data):
         url = self.__buildurl( path )
         r = requests.patch( url, data = data, auth = (self.api.username, self.api.password) )
-        response = {}
-        response['headers'] = r.headers
-        response['data'] = json.loads( r.content )
+        response = {'headers': r.headers, 'data': json.loads( r.content )}
         return json.dumps( response )
 
     def put(self, path, data=None):
         url = self.__buildurl( path )
         r = requests.put( url, data = data, auth = (self.api.username, self.api.password) )
-        response = {}
-        response['headers'] = r.headers
-        response['data'] = json.loads( r.content )
+        response = {'headers': r.headers, 'data': json.loads( r.content )}
         return json.dumps( response )
 
-    def delete(self, path):
+    def delete(self, path, data=None):
         url = self.__buildurl( path )
-        r = requests.post( url, auth = (self.api.username, self.api.password) )
-        response = {}
-        response['headers'] = r.headers
-        response['data'] = json.loads( r.content )
+        r = requests.post( url, data = data, auth = (self.api.username, self.api.password) )
+        response = {'headers': r.headers, 'data': json.loads( r.content )}
         return json.dumps( response )
 
     def __buildurl(self, path):
