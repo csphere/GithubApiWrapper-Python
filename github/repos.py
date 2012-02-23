@@ -2,12 +2,16 @@ from http import HTTP
 import json
 from collaborators import Collaborators
 from commits import Commits
+from downloads import Downloads
+from forks import Forks
 
 class Repos( ):
     def __init__(self, api):
         self.__api = api
         self.collaborators = Collaborators( self.__api )
         self.commits = Commits( self.__api )
+        self.downloads = Downloads( self.__api )
+        self.forks = Forks( self.__api )
 
     def listYourRepos(self):
         return HTTP( self.__api ).get( 'user/repos' )
