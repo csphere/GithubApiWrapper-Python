@@ -1,11 +1,13 @@
 from http import HTTP
 import json
 from emails import Emails
+from followers import Followers
 
 class Users:
     def __init__(self, api):
         self.__api = api
         self.emails = Emails( self.__api )
+        self.followers = Followers( self.__api )
 
     def getUser(self, user=None):
         url = 'users/%s' % user if (user != None and user != self.__api.username) else 'user'
