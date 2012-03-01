@@ -7,7 +7,7 @@ from orgs import orgs
 from users import users
 from repos import repos
 
-class Github():
+class Github:
     apiurl = 'https://api.github.com'
 
     def __init__(self, username, password ):

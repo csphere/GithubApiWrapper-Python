@@ -1,6 +1,5 @@
 import json
 
-
 class ReposCommits:
     def __init__(self, github):
         self.__github = github
