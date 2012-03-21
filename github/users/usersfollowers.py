@@ -12,11 +12,6 @@ class UsersFollowers:
             user is not None and user != self.__github.username) else 'user/following'
         return self.__github.get(url)
 
-    def listFollowing(self, user=None):
-        url = 'users/%s/following' % user if (
-            user is not None and user != self.__github.username) else 'user/following'
-        return self.__github.get(url)
-
     def checkIfFollowing(self, user):
         return self.__github.get('user/following/%s' % user)
 

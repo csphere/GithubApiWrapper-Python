@@ -1,4 +1,4 @@
-class Events():
+class Events:
     def __init__(self, github):
         #TODO: Rsearch http://developer.github.com/v3/events/types/
         self.__github = github
@@ -21,11 +21,6 @@ class Events():
 
     def listOrgPublicEvents(self, org):
         return self.__github.get('orgs/%s/events' % org)
-
-    def listRepoIssueEvents(self, repo, user=None):
-        username = self.__github.username if user is None else user
-        return self.__github.get(
-            'repos/%s/%s/issues/events' % (username, repo))
 
     def listReceivedEvents(self, user=None):
         username = self.__github.username if user is None else user

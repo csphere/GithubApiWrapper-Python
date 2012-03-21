@@ -1,7 +1,6 @@
 import json
 import urllib
 
-
 class IssuesMilestones:
     def __init__(self, github):
         self.__github = github

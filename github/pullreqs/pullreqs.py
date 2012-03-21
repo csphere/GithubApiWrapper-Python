@@ -27,8 +27,7 @@ class PullReq:
         }
         params = self.__github.__removeEmptyParams(params)
         data = json.dumps(params)
-        return self.__github.post('repos/%s/%s/pulls' % (username, repo),
-                                  data)
+        return self.__github.post('repos/%s/%s/pulls' % (username, repo), data)
 
     def createPullRequestFromIssue(self, repo, issue, base, head, user=None):
         username = self.__github.username if user is None else user

@@ -75,10 +75,7 @@ class Github:
         return json.dumps(self.__buildResponse(r))
 
     def __removeEmptyParams(self, params):
-        for i in range(0, len(params)):
-            if not params[i]:
-                del params[i]
-        return params
+        return dict((k,v) for k,v in params.iteritems() if v is not None)
 
     def __buildurl(self, path):
         return Github.apiurl + (path if (path[0] is '/') else ('/%s' % path))

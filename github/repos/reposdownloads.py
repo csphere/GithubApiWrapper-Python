@@ -12,7 +12,6 @@ class ReposDownloads:
         username = self.__github.username if user is None else user
         return self.__github.get(
             'repos/%s/%s/downloads/%s' % (username, repo, id), )
-        #TODO
 
     def createNewDownload(self, repo, name, size, description=None,
                           content_type=None, user=None):
@@ -27,8 +26,7 @@ class ReposDownloads:
         url = 'repos/%s/%s/downloads/%s' % (username, repo, id)
         resource = self.__github.post(url, data)
         jresource = json.loads(resource)
-
-        
+        # TODO
 
 
     def deleteDownload(self, repo, id, user=None):

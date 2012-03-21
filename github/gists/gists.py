@@ -1,6 +1,6 @@
 import json
 
-class Gists():
+class Gists:
     def __init__(self, github):
         self.__github = github
 

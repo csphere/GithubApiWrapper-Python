@@ -7,7 +7,7 @@ class UsersEmails:
     def listEmails(self):
         return self.__github.get('user/emails')
 
-    def addEmail(self, emails):
+    def addEmails(self, emails):
         data = json.dumps(emails)
         return self.__github.post('user/emails', data)
 

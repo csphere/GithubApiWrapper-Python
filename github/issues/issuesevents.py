@@ -6,14 +6,6 @@ class IssuesEvents:
         url = 'repos/%s/%s/issues/%s/events' % (user, repo, issue_id)
         return self.__github.get(url)
 
-    def listIssueEvents(self, repo, issue_id, user=None):
-        url = 'repos/%s/%s/issues/%s/events' % (user, repo, issue_id)
-        return self.__github.get(url)
-
-    def listRepoIssueEvents(self, repo, user=None):
-        url = 'repos/%s/%s/issues/events' % (user, repo)
-        return self.__github.get(url)
-
     def listRepoIssueEvents(self, repo, user=None):
         url = 'repos/%s/%s/issues/events' % (user, repo)
         return self.__github.get(url)

@@ -8,7 +8,7 @@ from reposkeys import ReposKeys
 from reposwatching import ReposWatching
 from reposhooks import ReposHooks
 
-class Repos():
+class Repos:
     def __init__(self, github):
         self.__github = github
         self.collaborators = ReposCollaborators(self.__github)

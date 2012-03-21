@@ -1,6 +1,6 @@
 import json
 
-class GistsComments():
+class GistsComments:
     def __init__(self, github):
         self.__github = github
 
