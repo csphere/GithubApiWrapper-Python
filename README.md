@@ -107,7 +107,7 @@ response = g.repos.createUserRepo( name, desc, page, private, has_issues, has_wi
 <pre>
 {
     "headers": {
-        "url": "https://api.github.com/user/repos?access_token=[YOUR_TOKEN]",
+        "url": "https://api.github.com/user/repos",
         "content_type": "application/json; charset=utf-8",
         "http_code": 201,
         "header_size": 413,
