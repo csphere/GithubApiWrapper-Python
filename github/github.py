@@ -43,36 +43,36 @@ class Github:
     def head(self, url):
         url = self.__buildurl(url)
         r = requests.head(url, auth = (self.username, self.password))
-        return json.dumps(self.__buildResponse(r))
+        return self.__buildResponse(r)
 
     def get(self, url):
         url = self.__buildurl(url)
         r = requests.get(url, auth = (self.username, self.password))
-        return json.dumps(self.__buildResponse(r))
+        return self.__buildResponse(r)
 
     def post(self, url, data=None):
         url = self.__buildurl(url)
         r = requests.post(url, data = data,
                           auth = (self.username, self.password))
-        return json.dumps(self.__buildResponse(r))
+        return self.__buildResponse(r)
 
     def patch(self, url, data):
         url = self.__buildurl(url)
         r = requests.patch(url, data = data,
                            auth = (self.username, self.password))
-        return json.dumps(self.__buildResponse(r))
+        return self.__buildResponse(r)
 
     def put(self, url, data=None):
         url = self.__buildurl(url)
         r = requests.put(url, data = data,
                          auth = (self.username, self.password))
-        return json.dumps(self.__buildResponse(r))
+        return self.__buildResponse(r)
 
     def delete(self, url, data=None):
         url = self.__buildurl(url)
         r = requests.post(url, data = data,
                           auth = (self.username, self.password))
-        return json.dumps(self.__buildResponse(r))
+        return self.__buildResponse(r)
 
     def __removeEmptyParams(self, params):
         return dict((k,v) for k,v in params.iteritems() if v is not None)
@@ -82,6 +82,6 @@ class Github:
 
     def __buildResponse(self, response):
         return {
-            'headers': response.headers,
-            'data': json.loads(response.content)
+            "headers": json.dumps(response.headers),
+            "data": response.content
         }
