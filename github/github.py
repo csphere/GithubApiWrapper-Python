@@ -83,5 +83,5 @@ class Github:
     def __buildResponse(self, response):
         return {
             "headers": json.dumps(response.headers),
-            "data": response.content
+            "body": response.content
         }
