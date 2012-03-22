@@ -1,7 +1,7 @@
 *Github API Wrapper - Python*
 =================================================
 -------------------------------------------------
-A minimal PHP wrapper created for making interaction with the Github API(v3) easy and predictable.
+A minimal Python wrapper created for making interaction with the Github API(v3) easy and predictable.
 
 http://developer.github.com/v3/
 
@@ -12,7 +12,6 @@ Use a username and password associated with a Github account.
 Example:
 <pre>
 from github import github
-
 g = github.Github( username, password )
 </pre>
 
@@ -30,7 +29,7 @@ response = g.users.getUser()
 <pre>
 {
     "headers": {
-        "url": "https://api.github.com/user?access_token=[YOUR_TOKEN]",
+        "url": "https://api.github.com/user",
         "content_type": "application/json; charset=utf-8",
         "http_code": 200,
         "header_size": 347,
@@ -51,7 +50,7 @@ response = g.users.getUser()
         "starttransfer_time": 0.110853,
         "redirect_time": 0
     },
-    "response": {
+    "body": {
         "type": "User",
         "url": "https://api.github.com/users/username",
         "private_gists": 2,
@@ -90,17 +89,18 @@ response = g.users.getUser()
 *Example Request Creating a New Repository*
 -------------------------------------------------
 <pre>
-$query = array(
-    'name'         => $repoName,            // required
-    'description'  => $repoDescription,     // optional
-    'homepage'     => $repoHomePage,        // optional
-    'private'      => $repoPrivacy          // optional
-    'has_issues'   => $repoIssuesEnabled    // optional
-    'has_wiki'     => $repoWikiEnabled      // optional
-    'has_downloads'=> $repoDownloadsEnabled // optional
-    'team_id'      => $collabTeamID         // optional
-);
-$response = $github->executeRequest('POST','user/repos',$query);
+# Using just the new Repo name
+response = g.repos.createUserRepo( "MyNewRepo" )
+
+# Using some other parameters
+name = "MyNewRepo"
+desc = "Some description."
+page = "www.homepage.com"
+private = True
+has_issues = True
+has_wiki = True
+has_downloads = True
+response = g.repos.createUserRepo( name, desc, page, private, has_issues, has_wiki, has_downloads )
 </pre>
 
 <h4>The response...</h4>
@@ -128,23 +128,23 @@ $response = $github->executeRequest('POST','user/repos',$query);
         "starttransfer_time": 0.280533,
         "redirect_time": 0
     },
-    "response": {
-        "url": "https://api.github.com/repos/username/Example",
+    "body": {
+        "url": "https://api.github.com/repos/username/MyNewRepo",
         "watchers": 1,
         "has_issues": true,
         "created_at": "2012-02-14T03:40:49Z",
-        "html_url": "https://github.com/username/Example",
+        "html_url": "https://github.com/username/MyNewRepo",
         "has_downloads": true,
-        "ssh_url": "git@github.com:username/Example.git",
-        "svn_url": "https://github.com/username/Example",
-        "description": "ExampleDescription",
+        "ssh_url": "git@github.com:username/MyNewRepo.git",
+        "svn_url": "https://github.com/username/MyNewRepo",
+        "description": "Some description.",
         "mirror_url": null,
-        "clone_url": "https://github.com/username/Example.git",
+        "clone_url": "https://github.com/username/MyNewRepo.git",
         "forks": 1,
         "fork": false,
         "has_wiki": true,
-        "private": false,
-        "homepage": "www.examplepage.com",
+        "private": True,
+        "homepage": "www.homepage.com",
         "size": 0,
         "updated_at": "2012-02-14T03:40:49Z",
         "owner": {
@@ -154,12 +154,12 @@ $response = $github->executeRequest('POST','user/repos',$query);
             "login": "username",
             "id": 901650
         },
-        "name": "Example",
+        "name": "MyNewRepo",
         "open_issues": 0,
         "master_branch": null,
         "pushed_at": null,
         "id": 3436770,
-        "git_url": "git://github.com/username/Example.git",
+        "git_url": "git://github.com/username/MyNewRepo.git",
         "language": null
     }
 }
