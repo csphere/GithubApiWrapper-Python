@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Githubapiwrapper-python by csphere</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/csphere/GithubApiWrapper-Python">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/csphere/GithubApiWrapper-Python/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/csphere/GithubApiWrapper-Python/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Githubapiwrapper-python</h1>
+          <p>An intuitive wrapper for the Github Api v3.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/csphere">csphere</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1><em>Github API Wrapper - Python</em></h1>
+
+<hr><p>A minimal Python wrapper created for making interaction with the Github API(v3) easy and predictable.</p>
+
+<p><a href="http://developer.github.com/v3/">http://developer.github.com/v3/</a></p>
+
+<h2><em>Basic Authentication</em></h2>
+
+<p>Use a username and password associated with a Github account.</p>
+
+<p>Example:</p>
+
+<pre>
+from github import github
+g = github.Github( username, password )
+</pre>
+
+<h1><em>Making Requests</em></h1>
+
+<hr><p>Use the API documentation as a reference.  The library is structured exactly like the API v3 documentation.</p>
+
+<h2><em>Example Request for Authenticated User's Data</em></h2>
+
+<pre>
+response = g.users.getUser()
+</pre>
+
+<h4>The response...</h4>
+
+<pre>
+{
+    "headers": {
+        "url": "<a href="https://api.github.com/user">https://api.github.com/user</a>",
+        "content_type": "application/json; charset=utf-8",
+        "http_code": 200,
+        "header_size": 347,
+        "request_size": 111,
+        "filetime": -1,
+        "ssl_verify_result": 0,
+        "redirect_count": 0,
+        "total_time": 0.110919,
+        "namelookup_time": 0.00618,
+        "connect_time": 0.014401,
+        "pretransfer_time": 0.054725,
+        "size_upload": 0,
+        "size_download": 817,
+        "speed_download": 7365,
+        "speed_upload": 0,
+        "download_content_length": 817,
+        "upload_content_length": 0,
+        "starttransfer_time": 0.110853,
+        "redirect_time": 0
+    },
+    "body": {
+        "type": "User",
+        "url": "<a href="https://api.github.com/users/username">https://api.github.com/users/username</a>",
+        "private_gists": 2,
+        "created_at": "2011-07-07T22:20:48Z",
+        "email": "example@gmail.com",
+        "html_url": "<a href="https://github.com/username">https://github.com/username</a>",
+        "gravatar_id": "123123123123123123123123123",
+        "collaborators": 1,
+        "hireable": false,
+        "disk_usage": 13348,
+        "total_private_repos": 3,
+        "following": 4,
+        "blog": "<a href="http://www.yoursitename.com/">http://www.yoursitename.com/</a>",
+        "bio": null,
+        "avatar_url": "<a href="https://www.avatar.com/pathtoyouravatar.png">https://www.avatar.com/pathtoyouravatar.png</a>",
+        "login": "username",
+        "owned_private_repos": 3,
+        "followers": 1,
+        "name": "Your Name",
+        "plan": {
+            "private_repos": 10,
+            "collaborators": 3,
+            "space": 614400,
+            "name": "micro"
+        },
+        "location": "Your City, NY",
+        "id": 902312,
+        "public_repos": 0,
+        "public_gists": 17,
+        "company": "Your Company Name, LLC"
+    }
+}
+</pre>
+
+<h2><em>Example Request Creating a New Repository</em></h2>
+
+<pre>
+# Using just the new Repo name
+response = g.repos.createUserRepo( "MyNewRepo" )
+
+# Using some other parameters
+name = "MyNewRepo"
+desc = "Some description."
+page = "<a href="http://www.homepage.com">www.homepage.com</a>"
+private = True
+has_issues = True
+has_wiki = True
+has_downloads = True
+response = g.repos.createUserRepo( name, desc, page, private, has_issues, has_wiki, has_downloads )
+</pre>
+
+<h4>The response...</h4>
+
+<pre>
+{
+    "headers": {
+        "url": "<a href="https://api.github.com/user/repos">https://api.github.com/user/repos</a>",
+        "content_type": "application/json; charset=utf-8",
+        "http_code": 201,
+        "header_size": 413,
+        "request_size": 358,
+        "filetime": -1,
+        "ssl_verify_result": 0,
+        "redirect_count": 0,
+        "total_time": 0.280588,
+        "namelookup_time": 0.014798,
+        "connect_time": 0.023159,
+        "pretransfer_time": 0.065582,
+        "size_upload": 170,
+        "size_download": 975,
+        "speed_download": 3474,
+        "speed_upload": 605,
+        "download_content_length": 975,
+        "upload_content_length": 170,
+        "starttransfer_time": 0.280533,
+        "redirect_time": 0
+    },
+    "body": {
+        "url": "<a href="https://api.github.com/repos/username/MyNewRepo">https://api.github.com/repos/username/MyNewRepo</a>",
+        "watchers": 1,
+        "has_issues": true,
+        "created_at": "2012-02-14T03:40:49Z",
+        "html_url": "<a href="https://github.com/username/MyNewRepo">https://github.com/username/MyNewRepo</a>",
+        "has_downloads": true,
+        "ssh_url": "git@github.com:username/MyNewRepo.git",
+        "svn_url": "<a href="https://github.com/username/MyNewRepo">https://github.com/username/MyNewRepo</a>",
+        "description": "Some description.",
+        "mirror_url": null,
+        "clone_url": "<a href="https://github.com/username/MyNewRepo.git">https://github.com/username/MyNewRepo.git</a>",
+        "forks": 1,
+        "fork": false,
+        "has_wiki": true,
+        "private": True,
+        "homepage": "<a href="http://www.homepage.com">www.homepage.com</a>",
+        "size": 0,
+        "updated_at": "2012-02-14T03:40:49Z",
+        "owner": {
+            "url": "<a href="https://api.github.com/users/username">https://api.github.com/users/username</a>",
+            "avatar_url": "<a href="https://secure.gravatar.com/avatar/someimage.png">https://secure.gravatar.com/avatar/someimage.png</a>",
+            "gravatar_id": "948f18791231231231231231231",
+            "login": "username",
+            "id": 901650
+        },
+        "name": "MyNewRepo",
+        "open_issues": 0,
+        "master_branch": null,
+        "pushed_at": null,
+        "id": 3436770,
+        "git_url": "git://github.com/username/MyNewRepo.git",
+        "language": null
+    }
+}
+</pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
