@@ -15,5 +15,5 @@ class ReposForks:
         username = self.__github.username if user is None else user
         url = 'repos/%s/%s/forks' % (username, repo)
         if org:
-            url = '%s?%s' % (url, {'org': org})
+            url = '%s?%s' % (url, urllib.urlencode({'org': org}))
         return self.__github.post(url)
