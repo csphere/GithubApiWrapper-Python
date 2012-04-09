@@ -32,7 +32,6 @@ class Issues:
                        sort='created', direction='desc', since=None,
                        user=None):
         params = {
-            'filter': filter,
             'state': state,
             'assignee': assignee,
             'mentioned': mentioned,
