@@ -9,7 +9,7 @@ class PullReq:
     def listPullRequests(self, repo, state=None, user=None):
         username = self.__github.username if user is None else user
         url = 'repos/%s/%s/pulls' % (username, repo)
-        url = '%s?%s' % (url, urllib.urlencode(state)) if state else url
+        url = '%s?%s' % (url, urllib.urlencode({'state': state})) if state else url
         return self.__github.get(url)
 
     def getPullRequest(self, repo, id, user=None):
