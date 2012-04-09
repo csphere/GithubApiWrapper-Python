@@ -6,7 +6,7 @@ class ReposDownloads:
 
     def getDownloads(self, repo, user=None):
         username = self.__github.username if user is None else user
-        return self.__github.get('repos/%s/%s/downloads' % (username, repo), )
+        return self.__github.get('repos/%s/%s/downloads' % (username, repo) )
 
     def getDownload(self, repo, id, user=None):
         username = self.__github.username if user is None else user
