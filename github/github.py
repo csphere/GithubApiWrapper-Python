@@ -34,7 +34,7 @@ class Github:
         elif verb == 'PUT':
             return self.put(url, data)
         elif verb == 'DELETE':
-            return self.head(url)
+            return self.delete(url)
         else:
             raise Exception(
                 'Invalid httpVerb. Use: head, get, post, patch, put, delete')
