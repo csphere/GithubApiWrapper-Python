@@ -32,4 +32,4 @@ class ReposDownloads:
     def deleteDownload(self, repo, id, user=None):
         username = self.__github.username if user is None else user
         return self.__github.delete(
-            'repos/%s/%s/downloads/%s' % (username, repo, id), )
+            'repos/%s/%s/downloads/%s' % (username, repo, id) )
