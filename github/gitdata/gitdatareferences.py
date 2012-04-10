@@ -13,9 +13,7 @@ class GitDataReferences:
         username = self.__github.username if user is None else user
         url = 'repos/%s/%s/git/refs' % (repo, username)
         if subnamespace:
-            url = '%s/%s' % (url, subnamespace) if subnamespace[
-                                                   0] == '/' else '%s/%s/' % (
-                url, subnamespace)
+            url = '%s%s' % (url, subnamespace) if subnamespace[0] == '/' else '%s/%s' % (url, subnamespace)
         return self.__github.get(url)
 
     def createReference(self, repo, ref, sha, user=None):
